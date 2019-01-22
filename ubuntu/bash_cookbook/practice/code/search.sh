@@ -26,3 +26,19 @@ find $directory -type f -print | xargs grep $search_term > ../data/www.packtpub.
 
 # Find files only in .xml and .css file
 find $directory -type f -name "*.xml" ! -name "*.css" -print | xargs grep $search_term > ../data/www.packtpub.com/result5.txt
+
+# Running this as subshell
+grep "${search_term}" $(ls -R "${directory}/"*.{html,txt}) > ../data/www.packtpub.com/result6.txt
+res=$?
+if [ ${res} -eq 0 ]; then
+  echo "We found results!"
+else
+  echo "It broke - it shouldn't happen (Packt is everywhere)!"
+fi
+
+# Or for bonus points - a personal favorite
+history | grep "ls" # This is really handy to find commands you ran yesterday!
+
+# Aaaannnd the lesson is:
+echo "We can do a lot with grep!"
+exit 0
